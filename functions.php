@@ -1,20 +1,21 @@
 <?php
-
+/**
+ * ================================================
+ *              Include Scripts
+ * ================================================
+ */
 function ssains_script_enqueue(){
-    wp_enqueue_style(
-        //handle, name of the file we wanna enque, wp automatically includes css at the end of this
-        'customstyles',
-        //the location of our file
-        // get_template_directory_uri() this gets us the full absolute uri
-        get_template_directory_uri().'/css/ssains.css',
-        //an array of all the dependencies our css file has
-        array(),
-        //version number of our file
-        '1.0',
-        //specify if the file has to be accessed on all device sizes or not
-        'all'
-    );
-    wp_enqueue_script( 'customjs', get_template_directory_uri().'/js/ssains.js', array(), '1.0',true );
+    //css
+ 
+    //js
+    wp_enqueue_script('jquery',  true);
+    wp_enqueue_script( 'bootstrapjs', get_template_directory_uri().'/js/bootstrap.min.js', array(),  false );
+    wp_enqueue_script( 'navbar', get_template_directory_uri().'/js/mobile/navbar.js', array(), true );
+    wp_enqueue_script( 'signup', get_template_directory_uri().'/js/footer/signup.js', array(), true );
+    wp_enqueue_script( 'analytics', get_template_directory_uri().'/js/google/analytics.js', array(), true );
+    wp_enqueue_script( 'cookies', get_template_directory_uri().'/js/cookies.js', array(), true );
+    wp_enqueue_script( 'customjs', get_template_directory_uri().'/js/ssains.js', array(), true );
+    
 }
 //now call this function with an action to tell wp when to call the function
 //add_action is a hook, gives us ability to tap into the wp execution cycle
@@ -27,6 +28,11 @@ add_action(
     //accepted_args
 );//after this will go to header/footer.php and let wordpress know where we want to add these   
 
+/**
+ * ================================================
+ *              Include Menus
+ * ================================================
+ */
 function ssains_theme_support()
 {
     add_theme_support( 'menus' );
@@ -35,10 +41,32 @@ function ssains_theme_support()
 }
 
 add_action('init', 'ssains_theme_support');
-
-//adding custom theme features
+/**
+ * ================================================
+ *              Custom Theme Support
+ * ================================================
+ */
 add_theme_support( 'custom-background' ); 
-
 add_theme_support( 'custom-header' );
 add_theme_support( 'post-thumbnails' );
 add_theme_support( 'post-formats',array('aside', 'image','video') );
+
+/**
+ * ================================================
+ *              SIDEBAR FUNCTIONs
+ * ================================================
+ */
+function ssains_widget_setup(){
+    register_sidebar(array(
+        'name' => 'Sidebarz',
+        'id' => 'sidebar-1',
+        'class' => 'custom',
+        'description' => 'ssains Standard Sidebar',
+        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+        'after_widget' => '</aside>',
+        'before_title' => '<h1 class="widget-title">',
+        'after_title' => '</h1>'
+    )
+);
+}
+add_action( 'widgets_init', 'ssains_widget_setup');
