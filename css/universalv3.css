@@ -1497,7 +1497,7 @@
       margin-bottom: 12px;
   }
   
-  footer{/* margin-top: 64px; */background-color: 66FFE0;z-index: 1;/* color: #FFFFFF; *//* padding: 32px 128px !important; */}
+  footer{/* margin-top: 64px; */background-color: #66FFE0;z-index: 1;/* color: #FFFFFF; *//* padding: 32px 128px !important; */}
   
   footer.right{
     text-align: right;

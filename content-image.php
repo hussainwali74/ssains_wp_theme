@@ -6,3 +6,10 @@
     <?php the_post_thumbnail( 'thumbnail' ); ?>
  </div>
  <hr>
+ <p>
+     <?php if ( is_category() || is_archive() ) {
+    the_excerpt();
+} else {
+    the_content();
+} ?>
+</p>

@@ -1,47 +1,41 @@
 <?php get_header(); ?>
 
-
-<div class="bg-yellow">
-  <div class="space-divider"></div>
-
-  <section>
-    <div class="col-md-6 p24">
-      <h1 class="left-align mt24">Learn about life insurance</h1>
-      <p>Our extensive guides have all you need to get started</p>
-
-        <div class="input-group inline-flex col-xs-12 mt12 mb24">
-          <input type="text" placeholder="Search for term" class="inline">
-
-          <button class="btn btn-secondary inline"><h5>Search</h5></button>
-          <div class="clearfix"></div>
-
-        </div>
-    </div>
-
-    <div class="col-md-6 p24 right-align hidden-xs hidden-sm">
-      <img class="landing-img" src=<?php echo get_template_directory_uri()."/images/illustrations/category-life.png"; ?> style="max-width: 270px" alt="illustration travel insurance">
-    </div>
-    <div class="clearfix"></div>
-
-  </section>
-
-  <div class="clearfix"></div>
-
-  <div class="space-divider"></div>
-
-</div>
+<?php 
+$page_name = "Life";
+include(locate_template('template-search.php')); 
+ ?>
 
 <div class="clearfix"></div>
 <section id="guides" class="p24 card" style="margin-top:-84px;">
     <?php if(have_posts()) :
         while (have_posts()): the_post();
-        get_template_part( 'content', get_post_format(  ) );//e.g., content-aside if aside is the post format
-        ?>  
-
- <?php        
+        get_template_part( 'content' );//e.g., content-aside if aside is the post format
+    ?>  
+   <?php        
         endwhile;
+        ?> 
+    <!-- pagination links -->
+    <div class="col-md-6 col-sm-6 col-xs-12 pb24 left-align">
+      <?php next_posts_link( '<< Older Posts' ); ?>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12 pb24 right-align">
+      <?php previous_posts_link( '<< Newer Posts' ); ?>
+    </div>  
+    <!-- <a href="<?php //echo esc_url( get_permalink() ); ?>" class=' col-xs-12 p12'>
+                <p class='semibold'>
+                <?php 
+                //echo the_title();?>
+                </p>
+                <div class="semibold blue">View <i class="material-icons">arrow_right_alt</i></div>
+              </a>
+    </div>  -->
+
+    <?php
     endif;
     ?>
-    </section>
+
+  <div class="clearfix"></div>
+  <div class="space-divider"></div>
+</section>
 
 <?php get_footer(); ?>

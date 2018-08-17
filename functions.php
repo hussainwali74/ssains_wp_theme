@@ -1,4 +1,24 @@
 <?php
+
+the_widget( 'WP_Widget_Categories', 'dropdown=1&hierarchical=1' );
+
+function my_excerpt_length($length) {
+    return 20;
+    }
+    add_filter('excerpt_length', 'my_excerpt_length');
+/**
+ * ================================================
+ *              Head FUNCTIONS
+ * ================================================
+ */
+
+ function ssains_remove_version()
+ {
+    
+ }
+
+
+
 /**
  * ================================================
  *              Include Scripts
